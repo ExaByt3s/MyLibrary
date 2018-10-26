@@ -1,0 +1,14 @@
+#dir
+/.vs/
+/.git/
+/build/
+
+
+
+#file
+*.db
+*.opendb
+*.opensdf
+*.sdf
+*.suo
+
