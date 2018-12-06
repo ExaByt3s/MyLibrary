@@ -16,6 +16,9 @@
     <Filter Include="LowBit">
       <UniqueIdentifier>{a985cf23-ed30-416e-b861-61abd2f5bbab}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Heap">
+      <UniqueIdentifier>{ea69219e-6914-425b-a2a0-35a22876e98d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LowBit\LowBit.cpp">
@@ -24,10 +27,16 @@
     <ClCompile Include="stdafx.h">
       <Filter>头文件</Filter>
     </ClCompile>
+    <ClCompile Include="Heap\Heap.cpp">
+      <Filter>Heap</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LowBit\LowBit.h">
       <Filter>LowBit</Filter>
+    </ClInclude>
+    <ClInclude Include="Heap\Heap.h">
+      <Filter>Heap</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

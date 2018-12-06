@@ -120,11 +120,13 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
- <ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Heap\Heap.cpp" />
     <ClCompile Include="LowBit\LowBit.cpp" />
     <ClCompile Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Heap\Heap.h" />
     <ClInclude Include="LowBit\LowBit.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
