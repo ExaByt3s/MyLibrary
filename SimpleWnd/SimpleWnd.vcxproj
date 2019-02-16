@@ -19,8 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{1B2A6268-9DE0-4E67-A488-8AA53248FEDE}</ProjectGuid>
-    <RootNamespace>MyLibrary</RootNamespace>
+    <ProjectGuid>{7ED33BB7-6950-41C4-9B4D-BC26F8FBAB2B}</ProjectGuid>
+    <RootNamespace>SimpleWnd</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -69,22 +69,18 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)build\debug\</OutDir>
-    <IntDir>$(SolutionDir)build\tmp\</IntDir>
-    <TargetName>$(ProjectName)d</TargetName>
-    <IncludePath>$(ProjectDir);$(IncludePath)</IncludePath>
+    <OutDir>$(SolutionDir)Build\$(Configuration)\$(ProjectName)\</OutDir>
+    <IntDir>$(SolutionDir)Build\$(Configuration)\$(ProjectName)\Tmp\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)build\release\</OutDir>
-    <IntDir>$(SolutionDir)build\tmp\</IntDir>
-    <IncludePath>$(ProjectDir);$(IncludePath)</IncludePath>
+    <OutDir>$(SolutionDir)Build\$(Configuration)\$(ProjectName)\</OutDir>
+    <IntDir>$(SolutionDir)Build\$(Configuration)\$(ProjectName)\Tmp\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -121,13 +117,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Heap\Heap.cpp" />
-    <ClCompile Include="LowBit\LowBit.cpp" />
-    <ClCompile Include="stdafx.h" />
+    <ClCompile Include="App.cpp" />
+    <ClCompile Include="IRegistAdapt.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="RegistStyle.cpp" />
+    <ClCompile Include="SimpleWnd.cpp" />
+    <ClCompile Include="WinBase.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Heap\Heap.h" />
-    <ClInclude Include="LowBit\LowBit.h" />
+    <ClInclude Include="App.h" />
+    <ClInclude Include="CommonHead.h" />
+    <ClInclude Include="IRegistAdapt.h" />
+    <ClInclude Include="RegistStyle.h" />
+    <ClInclude Include="SimpleWnd.h" />
+    <ClInclude Include="WinBase.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
