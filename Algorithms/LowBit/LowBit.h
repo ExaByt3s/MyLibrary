@@ -1,6 +1,7 @@
 #pragma once
+#include <vector>
+
 using namespace std;
-#include "..\stdafx.h"
 
 /* 
 	树状数组，可以用来解决数组区间和问题

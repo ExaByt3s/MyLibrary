@@ -4,15 +4,25 @@
     <Filter Include="LowBit">
       <UniqueIdentifier>{51300959-4dd9-44d6-9448-b8f7859bf283}</UniqueIdentifier>
     </Filter>
+    <Filter Include="KMP">
+      <UniqueIdentifier>{6fda096f-e9f0-4764-8753-cabd6f21e78f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LowBit\LowBit.cpp">
       <Filter>LowBit</Filter>
     </ClCompile>
+    <ClCompile Include="KMP\KMPStrCmp.cpp">
+      <Filter>KMP</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LowBit\LowBit.h">
       <Filter>LowBit</Filter>
+    </ClInclude>
+    <ClInclude Include="KMP\KMPStrCmp.h">
+      <Filter>KMP</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

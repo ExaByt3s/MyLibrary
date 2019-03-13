@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SimpleWnd", "SimpleWnd\SimpleWnd.vcxproj", "{7ED33BB7-6950-41C4-9B4D-BC26F8FBAB2B}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Algorithms", "Algorithms\Algorithms\Algorithms.vcxproj", "{CE51FA1A-89AA-43F6-92F6-A6699D4ECA5A}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Algorithms", "Algorithms\Algorithms.vcxproj", "{CE51FA1A-89AA-43F6-92F6-A6699D4ECA5A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
