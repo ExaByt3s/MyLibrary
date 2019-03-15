@@ -19,8 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{CE51FA1A-89AA-43F6-92F6-A6699D4ECA5A}</ProjectGuid>
-    <RootNamespace>Algorithms</RootNamespace>
+    <ProjectGuid>{7ED33BB7-6950-41C4-9B4D-BC26F8FBAB2B}</ProjectGuid>
+    <RootNamespace>SimpleWnd</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -81,12 +81,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
-    <Link>
-      <SubSystem>Console</SubSystem>
-    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -122,13 +117,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="KMP\KMPStrCmp.cpp" />
-    <ClCompile Include="LowBit\LowBit.cpp" />
-    <ClCompile Include="main_algorithms.cpp" />
+    <ClCompile Include="App.cpp" />
+    <ClCompile Include="IRegistAdapt.cpp" />
+    <ClCompile Include="main_SimpleWnd.cpp" />
+    <ClCompile Include="RegistStyle.cpp" />
+    <ClCompile Include="SimpleWnd.cpp" />
+    <ClCompile Include="WinBase.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="KMP\KMPStrCmp.h" />
-    <ClInclude Include="LowBit\LowBit.h" />
+    <ClInclude Include="App.h" />
+    <ClInclude Include="CommonHead.h" />
+    <ClInclude Include="IRegistAdapt.h" />
+    <ClInclude Include="RegistStyle.h" />
+    <ClInclude Include="SimpleWnd.h" />
+    <ClInclude Include="WinBase.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

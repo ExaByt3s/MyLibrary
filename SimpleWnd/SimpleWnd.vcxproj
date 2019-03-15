@@ -81,6 +81,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -119,7 +120,7 @@
   <ItemGroup>
     <ClCompile Include="App.cpp" />
     <ClCompile Include="IRegistAdapt.cpp" />
-    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="main_SimpleWnd.cpp" />
     <ClCompile Include="RegistStyle.cpp" />
     <ClCompile Include="SimpleWnd.cpp" />
     <ClCompile Include="WinBase.cpp" />

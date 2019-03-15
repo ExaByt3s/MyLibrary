@@ -90,18 +90,30 @@ KMPStrCmp::~KMPStrCmp()
 	}
 }
 
-bool KMPStrCmp::Cmp(const char * src)
+int KMPStrCmp::Cmp(const char * src)
 {
 	char * sTmp = 0;
 	const char * t = 0;
 	const char * p = 0;
+	int nSrcLen = strlen(src);
+	int nCmpLen = m_sPat.length();
+
+	if (nCmpLen > nSrcLen)
+	{
+		return -1;
+	}
 
 	if (m_bIgnoreCase)
 	{
-		sTmp = new char[strlen(src) + 1];
-		sTmp[strlen(src)] = 0;
-		memcpy(sTmp, src, strlen(src));
-		MakeLower(sTmp);
+		sTmp = new char[nSrcLen + 1];
+		sTmp[nSrcLen] = 0;
+
+		// 这里不要用MakeLower
+		for (int i = 0; i < nSrcLen; ++i)
+		{
+			sTmp[i] = tolower(src[i]);
+		}
+
 		t = sTmp;
 		p = m_sPatLower.c_str();
 	}
@@ -109,14 +121,6 @@ bool KMPStrCmp::Cmp(const char * src)
 	{
 		p = m_sPat.c_str();
 		t = src;
-	}
-
-	int nSrcLen = strlen(t);
-	int nCmpLen = m_sPat.length();
-
-	if (nCmpLen > nSrcLen)
-	{
-		return false;
 	}
 
 	int i = 0; // 主串的位置
@@ -150,7 +154,7 @@ bool KMPStrCmp::Cmp(const char * src)
 		delete[]sTmp;
 	}
 
-	return nIndex >= 0;
+	return nIndex;
 }
 
 void KMPStrCmp::FormateNext()
@@ -211,7 +215,7 @@ KMPWildCardsStrCmp::KMPWildCardsStrCmp(const std::string & sPat, bool bIgnoreCas
 			delete[]sTmp;
 		}
 	}
-	
+
 
 	FormateNext();
 }
@@ -226,26 +230,29 @@ KMPWildCardsStrCmp::~KMPWildCardsStrCmp()
 	m_nNexts.clear();
 }
 
-bool KMPWildCardsStrCmp::Cmp(const char * src)
+int KMPWildCardsStrCmp::Cmp(const char * src)
 {
 	if (m_sPats.size() == 0)
 	{
-		return false;
+		return -1;
 	}
 
 	int nLastIndex = GetCmpIndex(src, 0);
 
 	if (-1 == nLastIndex)
 	{
-		return false;
+		return -1;
 	}
 
-	while (-1 != nLastIndex)
+	while (1)
 	{
-		int nIndex = nLastIndex + m_sPats[0].length();
+		int nPat0Len = m_sPats[0].length();
+		int nIndex = nLastIndex + nPat0Len;
 		bool bFinde = true;
 
-		for (int i = 1; i < m_sPats.size(); ++i)
+		int nPatSize = m_sPats.size();
+
+		for (int i = 1; i < nPatSize; ++i)
 		{
 			nIndex = GetCmpIndex(src + nIndex, i);
 
@@ -260,13 +267,20 @@ bool KMPWildCardsStrCmp::Cmp(const char * src)
 
 		if (bFinde)
 		{
-			return true;
+			return nLastIndex;
 		}
 
-		nLastIndex = GetCmpIndex(src + nLastIndex + m_sPats[0].length(), 0);
+		int nTmp = GetCmpIndex(src + nLastIndex + nPat0Len, 0);
+
+		if (-1 == nTmp)
+		{
+			return -1;
+		}
+
+		nLastIndex += (nTmp + nPat0Len);
 	}
-	
-	return false;
+
+	return -1;
 }
 
 void KMPWildCardsStrCmp::FormateNext()
@@ -298,9 +312,9 @@ void KMPWildCardsStrCmp::FormateNext()
 				++j;
 				++k;
 
-				if (p[j] == p[k] || '?' == p[j] || '?' == p[k])
+				if (p[j] == p[k])
 				{
-					// 当两个字符相等时要跳过
+					// 当两个字符相等时要跳过 //注意？不能跳过，因为？可能代表其他的字符，并不想等
 					m_nNexts[i][j] = m_nNexts[i][k];
 				}
 				else
@@ -327,12 +341,30 @@ int KMPWildCardsStrCmp::GetCmpIndex(const char * sSrc, int nIndex)
 	const char * t = 0;
 	const char * p = 0;
 
+	int nSrcLen = strlen(sSrc);
+	int nCmpLen = m_sPats[nIndex].length();
+
+	if (nCmpLen > nSrcLen)
+	{
+		if (sTmp)
+		{
+			delete[]sTmp;
+		}
+
+		return -1;
+	}
+
 	if (m_bIgnoreCase)
 	{
-		sTmp = new char[strlen(sSrc) + 1];
-		sTmp[strlen(sSrc)] = 0;
-		memcpy(sTmp, sSrc, strlen(sSrc));
-		MakeLower(sTmp);
+		sTmp = new char[nSrcLen + 1];
+		sTmp[nSrcLen] = 0;
+
+		// 这里不要用MakeLower
+		for (int i = 0; i < nSrcLen; ++i)
+		{
+			sTmp[i] = tolower(sSrc[i]);
+		}
+
 		t = sTmp;
 		p = m_sPatLowers[nIndex].c_str();
 	}
@@ -342,20 +374,12 @@ int KMPWildCardsStrCmp::GetCmpIndex(const char * sSrc, int nIndex)
 		t = sSrc;
 	}
 
-	int nSrcLen = strlen(t);
-	int nCmpLen = m_sPats[nIndex].length();
-
-	if (nCmpLen > nSrcLen)
-	{
-		return -1;
-	}
-
 	int i = 0; // 主串的位置
 	int j = 0; // 模式串的位置
 
 	while (i < nSrcLen && j < nCmpLen)
 	{
-		if (j == -1 || t[i] == p[j])
+		if (j == -1 || t[i] == p[j] || '?' == p[j])
 		{
 			// 当j为-1时，要移动的是i，当然j也要归0
 			i++;
@@ -383,3 +407,4 @@ int KMPWildCardsStrCmp::GetCmpIndex(const char * sSrc, int nIndex)
 
 	return nRes;
 }
+

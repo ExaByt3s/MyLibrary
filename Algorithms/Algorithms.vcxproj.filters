@@ -15,7 +15,7 @@
     <ClCompile Include="KMP\KMPStrCmp.cpp">
       <Filter>KMP</Filter>
     </ClCompile>
-    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="main_algorithms.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LowBit\LowBit.h">

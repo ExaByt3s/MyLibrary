@@ -61,7 +61,10 @@ LRESULT WinBase::_WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 
 	if (pThis)
 	{
-		return pThis->_OnEvent(hWnd, msg, wParam, lParam);
+		if (S_OK == pThis->_OnEvent(hWnd, msg, wParam, lParam))
+		{
+			return S_OK;
+		}
 	}
 
 	if (WM_CREATE == msg)
