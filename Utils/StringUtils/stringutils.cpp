@@ -5,7 +5,7 @@
 
 typedef unsigned char u_char;
 
-static unsigned char kAsciiLowerCase[] = {
+static u_char kAsciiLowerCase[] = {
 	0x00, 0x01, 0x02, 0x03, 0x04,
 	0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x10,
 	0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0x1A, 0x1B, 0x1C,
@@ -36,9 +36,14 @@ static unsigned char kAsciiLowerCase[] = {
 static int __strcmp(const char *s1, const char *s2)
 {
 	while (*s1 == *s2++)
+	{
 		if (*s1++ == 0)
+		{
 			return (0);
-	return (*(unsigned char *)s1 - *(unsigned char *)--s2);
+		}
+	}
+
+	return (*(u_char *)s1 - *(u_char *)--s2);
 }
 
 /*
@@ -50,8 +55,13 @@ static int __strcmpi(const char *s1, const char *s2)
 	const u_char *us2 = (const u_char *)s2;
 
 	while (kAsciiLowerCase[*us1] == kAsciiLowerCase[*us2++])
+	{
 		if (*us1++ == '\0')
+		{
 			return (0);
+		}
+	}
+
 	return (kAsciiLowerCase[*us1] - kAsciiLowerCase[*--us2]);
 }
 
@@ -61,14 +71,23 @@ static int __strcmpi(const char *s1, const char *s2)
 static int __strncmp(const char *s1, const char *s2, size_t n)
 {
 	if (n == 0)
+	{
 		return (0);
+	}	
+
 	do
 	{
 		if (*s1 != *s2++)
-			return (*(unsigned char *)s1 - *(unsigned char *)--s2);
+		{
+			return (*(u_char *)s1 - *(u_char *)--s2);
+		}
+
 		if (*s1++ == 0)
+		{
 			break;
+		}
 	} while (--n != 0);
+
 	return (0);
 }
 
@@ -77,18 +96,26 @@ static int __strncmp(const char *s1, const char *s2, size_t n)
 */
 static int __strncmpi(const char *s1, const char *s2, size_t n)
 {
-	if (n != 0) {
+	if (n != 0) 
+	{
 		const u_char *cm = kAsciiLowerCase;
 		const u_char *us1 = (const u_char *)s1;
 		const u_char *us2 = (const u_char *)s2;
 
-		do {
+		do 
+		{
 			if (kAsciiLowerCase[*us1] != kAsciiLowerCase[*us2++])
+			{
 				return (kAsciiLowerCase[*us1] - kAsciiLowerCase[*--us2]);
+			}
+
 			if (*us1++ == '\0')
+			{
 				break;
+			}
 		} while (--n != 0);
 	}
+
 	return (0);
 }
 
@@ -99,9 +126,12 @@ static bool __strendof(const char* str, const char* find)
 {
 	int lenstr = strlen(str);
 	int lensub = strlen(find);
-	if (lenstr < lensub) {
+
+	if (lenstr < lensub) 
+	{
 		return false;
 	}
+
 	const char* pos = (str + lenstr - lensub);
 	return memcmp(str + lenstr - lensub, find, lensub) == 0;
 }
@@ -111,18 +141,25 @@ static bool __strendof(const char* str, const char* find)
 */
 static bool __strendofi(const char* str, const char* find)
 {
+	const u_char * ufind = (const u_char *)find;
 	int lenstr = strlen(str);
 	int lensub = strlen(find);
-	if (lenstr < lensub) {
+
+	if (lenstr < lensub) 
+	{
 		return false;
 	}
 
-	const char* pos = (str + lenstr - lensub);
-	for (int i = 0; i < lensub; i++) {
-		if (kAsciiLowerCase[pos[i]] != kAsciiLowerCase[find[i]]) {
+	const u_char* pos = (const u_char*)(str + lenstr - lensub);
+
+	for (int i = 0; i < lensub; i++)
+	{
+		if (kAsciiLowerCase[pos[i]] != kAsciiLowerCase[ufind[i]])
+		{
 			return false;
 		}
 	}
+
 	return true;
 }
 
@@ -133,9 +170,12 @@ static bool __strbegof(const char* str, const char* find)
 {
 	int lenstr = strlen(str);
 	int lensub = strlen(find);
-	if (lenstr < lensub) {
+
+	if (lenstr < lensub) 
+	{
 		return false;
 	}
+
 	return memcmp(str, find, lensub) == 0;
 }
 
@@ -144,17 +184,24 @@ static bool __strbegof(const char* str, const char* find)
 */
 static bool __strbegofi(const char* str, const char* find)
 {
+	const u_char * ustr = (const u_char *)str;
+	const u_char * ufind = (const u_char *)find;
 	int lenstr = strlen(str);
 	int lensub = strlen(find);
-	if (lenstr < lensub) {
+
+	if (lenstr < lensub) 
+	{
 		return false;
 	}
 
-	for (int i = 0; i < lensub; i++) {
-		if (kAsciiLowerCase[str[i]] != kAsciiLowerCase[find[i]]) {
+	for (int i = 0; i < lensub; i++) 
+	{
+		if (kAsciiLowerCase[ustr[i]] != kAsciiLowerCase[ufind[i]])
+		{
 			return false;
 		}
 	}
+
 	return true;
 }
 
@@ -172,16 +219,22 @@ static char *__strstr(const char *str, const char *find)
 	if ((c = *find++) != 0)
 	{
 		len = strlen(find);
+
 		do
 		{
 			do
 			{
 				if ((sc = *str++) == 0)
+				{
 					return (NULL);
+				}
 			} while (sc != c);
+
 		} while (__strncmp(str, find, len) != 0);
+
 		str--;
 	}
+
 	return ((char *)str);
 }
 
@@ -193,22 +246,29 @@ static char *__strstr(const char *str, const char *find)
 */
 static char *__strstri(const char *str, const char *find)
 {
-	char c, sc;
+	u_char c, sc;
 	size_t len;
 
 	if ((c = *find++) != 0)
 	{
 		len = strlen(find);
+
 		do
 		{
 			do
 			{
 				if ((sc = *str++) == 0)
+				{
 					return (NULL);
+				}
+
 			} while (kAsciiLowerCase[sc] != kAsciiLowerCase[c]);
+
 		} while (__strncmpi(str, find, len) != 0);
+
 		str--;
 	}
+
 	return ((char *)str);
 }
 
@@ -221,37 +281,57 @@ static char *__strstri(const char *str, const char *find)
 static bool __wildcard(const char* str, const char* find)
 {
 	char const *back_find = nullptr, *back_str = back_str = nullptr;
+
 	for (;;)
 	{
-		unsigned char c = *str++;
-		unsigned char d = *find++;
+		u_char c = *str++;
+		u_char d = *find++;
 
 		switch (d)
 		{
-		case '?':
-			if (c == '\0')
-				return false;
-			break;
-		case '*':
-			if (*find == '\0')
-				return true;
-			back_find = find;
-			back_str = --str;
-			break;
-		default:
-			if (c == d)
+			case '?':
 			{
-				if (d == '\0')
-					return true;
+				if (c == '\0')
+				{
+					return false;
+				}
+
 				break;
 			}
+			case '*':
+			{
+				if (*find == '\0')
+				{
+					return true;
+				}
 
-			if (c == '\0' || !back_find)
-				return false;   /* No point continuing */
-								/* Try again from last *, one character later in str. */
-			find = back_find;
-			str = ++back_str;
-			break;
+				back_find = find;
+				back_str = --str;
+				break;
+			}
+			default:
+			{
+				if (c == d)
+				{
+					if (d == '\0')
+					{
+						return true;
+					}
+
+					break;
+				}
+
+				if (c == '\0' || !back_find)
+				{
+					/* No point continuing */
+					return false; 
+				}
+
+				/* Try again from last *, one character later in str. */
+				find = back_find;
+				str = ++back_str;
+				break;
+			}
 		}
 	}
 }
@@ -265,36 +345,57 @@ static bool __wildcard(const char* str, const char* find)
 static bool __wildcardi(const char* str, const char* find)
 {
 	char const *back_find = nullptr, *back_str = back_str = nullptr;
+
 	for (;;)
 	{
-		unsigned char c = *str++;
-		unsigned char d = *find++;
+		u_char c = *str++;
+		u_char d = *find++;
 
 		switch (d)
 		{
-		case '?':
-			if (c == '\0')
-				return false;
-			break;
-		case '*':
-			if (*find == '\0')
-				return true;
-			back_find = find;
-			back_str = --str;
-			break;
-		default:
-			if (kAsciiLowerCase[c] == kAsciiLowerCase[d]) {
-				if (d == '\0')
-					return true;
+			case '?':
+			{
+				if (c == '\0')
+				{
+					return false;
+				}
+
 				break;
 			}
+			case '*':
+			{
+				if (*find == '\0')
+				{
+					return true;
+				}
 
-			if (c == '\0' || !back_find)
-				return false;   /* No point continuing */
-								/* Try again from last *, one character later in str. */
-			find = back_find;
-			str = ++back_str;
-			break;
+				back_find = find;
+				back_str = --str;
+				break;
+			}
+			default:
+			{
+				if (kAsciiLowerCase[c] == kAsciiLowerCase[d])
+				{
+					if (d == '\0')
+					{
+						return true;
+					}
+
+					break;
+				}
+
+				if (c == '\0' || !back_find)
+				{
+					/* No point continuing */
+					return false;
+				}
+
+				/* Try again from last *, one character later in str. */
+				find = back_find;
+				str = ++back_str;
+				break;
+			}
 		}
 	}
 }

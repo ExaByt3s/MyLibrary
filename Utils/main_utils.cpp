@@ -6,6 +6,7 @@
 int main()
 {
 	stringutils::Test();
+	stringutils::Test1();
     return 0;
 }
 
