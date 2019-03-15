@@ -148,10 +148,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="MemoryShare\MemoryShare.h" />
+    <ClInclude Include="Sqlite3\SQLiteHelper.h" />
     <ClInclude Include="StringUtils\stringutils.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main_utils.cpp" />
+    <ClCompile Include="MemoryShare\MemoryShare.cpp" />
+    <ClCompile Include="Sqlite3\SQLiteHelper.cpp" />
     <ClCompile Include="StringUtils\stringutils.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

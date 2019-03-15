@@ -11,8 +11,10 @@ namespace stringutils
 	bool   strwildcard(const char* s, const char* find, bool icase);
 }
 
-namespace stringutils
+namespace utilstest
 {
+	using namespace stringutils;
+
 	static void Test()
 	{
 		strwildcard("cabcd", "*a", true);

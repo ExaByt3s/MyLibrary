@@ -5,16 +5,34 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
+    <Filter Include="MemoryShare">
+      <UniqueIdentifier>{c2f66205-13a4-4745-93b3-47b118709fb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sqlite3">
+      <UniqueIdentifier>{9d50b5d7-4bbf-418a-99d9-293ada7d49ce}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StringUtils\stringutils.h">
       <Filter>StringUtils</Filter>
+    </ClInclude>
+    <ClInclude Include="MemoryShare\MemoryShare.h">
+      <Filter>MemoryShare</Filter>
+    </ClInclude>
+    <ClInclude Include="Sqlite3\SQLiteHelper.h">
+      <Filter>Sqlite3</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main_utils.cpp" />
     <ClCompile Include="StringUtils\stringutils.cpp">
       <Filter>StringUtils</Filter>
+    </ClCompile>
+    <ClCompile Include="MemoryShare\MemoryShare.cpp">
+      <Filter>MemoryShare</Filter>
+    </ClCompile>
+    <ClCompile Include="Sqlite3\SQLiteHelper.cpp">
+      <Filter>Sqlite3</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
