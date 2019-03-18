@@ -101,7 +101,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -133,7 +133,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -148,13 +148,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Json\cJSON.h" />
+    <ClInclude Include="Json\CJsonObject.hpp" />
+    <ClInclude Include="Json\Test.h" />
     <ClInclude Include="MemoryShare\MemoryShare.h" />
+    <ClInclude Include="MemoryShare\Test.h" />
     <ClInclude Include="Sqlite3\SQLiteHelper.h" />
+    <ClInclude Include="Sqlite3\Test.h" />
     <ClInclude Include="StringUtils\stringutils.h" />
+    <ClInclude Include="StringUtils\Test.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Json\cJSON.c" />
+    <ClCompile Include="Json\CJsonObject.cpp" />
     <ClCompile Include="main_utils.cpp" />
     <ClCompile Include="MemoryShare\MemoryShare.cpp" />
+    <ClCompile Include="Sqlite3\lib\sqlite3.c" />
     <ClCompile Include="Sqlite3\SQLiteHelper.cpp" />
     <ClCompile Include="StringUtils\stringutils.cpp" />
   </ItemGroup>

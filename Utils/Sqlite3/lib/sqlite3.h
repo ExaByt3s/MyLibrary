@@ -941,7 +941,7 @@ struct sqlite3_io_methods {
 ** <li>[[SQLITE_FCNTL_VFS_POINTER]]
 ** ^The [SQLITE_FCNTL_VFS_POINTER] opcode finds a pointer to the top-level
 ** [VFSes] currently in use.  ^(The argument X in
-** sqlite3_file_control(m_pDB,SQLITE_FCNTL_VFS_POINTER,X) must be
+** sqlite3_file_control(db,SQLITE_FCNTL_VFS_POINTER,X) must be
 ** of type "[sqlite3_vfs] **".  This opcodes will set *X
 ** to a pointer to the top-level VFS.)^
 ** ^When there are multiple VFS shims in the stack, this opcode finds the
@@ -2179,9 +2179,9 @@ struct sqlite3_mem_methods {
 **      errors.  This step is only necessary if the application desires to keep
 **      the database in WAL mode after the reset if it was in WAL mode before
 **      the reset.  
-** <li> sqlite3_db_config(m_pDB, SQLITE_DBCONFIG_RESET_DATABASE, 1, 0);
-** <li> [sqlite3_exec](m_pDB, "[VACUUM]", 0, 0, 0);
-** <li> sqlite3_db_config(m_pDB, SQLITE_DBCONFIG_RESET_DATABASE, 0, 0);
+** <li> sqlite3_db_config(db, SQLITE_DBCONFIG_RESET_DATABASE, 1, 0);
+** <li> [sqlite3_exec](db, "[VACUUM]", 0, 0, 0);
+** <li> sqlite3_db_config(db, SQLITE_DBCONFIG_RESET_DATABASE, 0, 0);
 ** </ol>
 ** Because resetting a database is destructive and irreversible, the
 ** process requires the use of this obscure API and multiple steps to help
@@ -2622,7 +2622,7 @@ SQLITE_API int sqlite3_busy_timeout(sqlite3*, int ms);
 ** [sqlite3_errmsg()].
 */
 SQLITE_API int sqlite3_get_table(
-  sqlite3 *m_pDB,          /* An open database */
+  sqlite3 *db,          /* An open database */
   const char *zSql,     /* SQL to be evaluated */
   char ***pazResult,    /* Results of the query */
   int *pnRow,           /* Number of result rows written here */
@@ -3330,28 +3330,28 @@ SQLITE_API void sqlite3_progress_handler(sqlite3*, int, int(*)(void*), void*);
 **
 ** <table border="1" align=center cellpadding=5>
 ** <tr><th> URI filenames <th> Results
-** <tr><td> file:data.m_pDB <td> 
-**          Open the file "data.m_pDB" in the current directory.
-** <tr><td> file:/home/fred/data.m_pDB<br>
-**          file:///home/fred/data.m_pDB <br> 
-**          file://localhost/home/fred/data.m_pDB <br> <td> 
-**          Open the database file "/home/fred/data.m_pDB".
-** <tr><td> file://darkstar/home/fred/data.m_pDB <td> 
+** <tr><td> file:data.db <td> 
+**          Open the file "data.db" in the current directory.
+** <tr><td> file:/home/fred/data.db<br>
+**          file:///home/fred/data.db <br> 
+**          file://localhost/home/fred/data.db <br> <td> 
+**          Open the database file "/home/fred/data.db".
+** <tr><td> file://darkstar/home/fred/data.db <td> 
 **          An error. "darkstar" is not a recognized authority.
 ** <tr><td style="white-space:nowrap"> 
-**          file:///C:/Documents%20and%20Settings/fred/Desktop/data.m_pDB
-**     <td> Windows only: Open the file "data.m_pDB" on fred's desktop on drive
+**          file:///C:/Documents%20and%20Settings/fred/Desktop/data.db
+**     <td> Windows only: Open the file "data.db" on fred's desktop on drive
 **          C:. Note that the %20 escaping in this example is not strictly 
 **          necessary - space characters can be used literally
 **          in URI filenames.
-** <tr><td> file:data.m_pDB?mode=ro&cache=private <td> 
-**          Open file "data.m_pDB" in the current directory for read-only access.
+** <tr><td> file:data.db?mode=ro&cache=private <td> 
+**          Open file "data.db" in the current directory for read-only access.
 **          Regardless of whether or not shared-cache mode is enabled by
 **          default, use a private cache.
-** <tr><td> file:/home/fred/data.m_pDB?vfs=unix-dotfile <td>
-**          Open file "/home/fred/data.m_pDB". Use the special VFS "unix-dotfile"
+** <tr><td> file:/home/fred/data.db?vfs=unix-dotfile <td>
+**          Open file "/home/fred/data.db". Use the special VFS "unix-dotfile"
 **          that uses dot-files in place of posix advisory locking.
-** <tr><td> file:data.m_pDB?mode=readonly <td> 
+** <tr><td> file:data.db?mode=readonly <td> 
 **          An error. "readonly" is not a valid option for the "mode" parameter.
 ** </table>
 **
@@ -3378,15 +3378,15 @@ SQLITE_API void sqlite3_progress_handler(sqlite3*, int, int(*)(void*), void*);
 */
 SQLITE_API int sqlite3_open(
   const char *filename,   /* Database filename (UTF-8) */
-  sqlite3 **ppDb          /* OUT: SQLite m_pDB handle */
+  sqlite3 **ppDb          /* OUT: SQLite db handle */
 );
 SQLITE_API int sqlite3_open16(
   const void *filename,   /* Database filename (UTF-16) */
-  sqlite3 **ppDb          /* OUT: SQLite m_pDB handle */
+  sqlite3 **ppDb          /* OUT: SQLite db handle */
 );
 SQLITE_API int sqlite3_open_v2(
   const char *filename,   /* Database filename (UTF-8) */
-  sqlite3 **ppDb,         /* OUT: SQLite m_pDB handle */
+  sqlite3 **ppDb,         /* OUT: SQLite db handle */
   int flags,              /* Flags */
   const char *zVfs        /* Name of VFS module to use */
 );
@@ -3489,8 +3489,8 @@ SQLITE_API sqlite3_int64 sqlite3_uri_int64(const char*, const char*, sqlite3_int
 ** was invoked incorrectly by the application.  In that case, the
 ** error code and message may or may not be set.
 */
-SQLITE_API int sqlite3_errcode(sqlite3 *m_pDB);
-SQLITE_API int sqlite3_extended_errcode(sqlite3 *m_pDB);
+SQLITE_API int sqlite3_errcode(sqlite3 *db);
+SQLITE_API int sqlite3_extended_errcode(sqlite3 *db);
 SQLITE_API const char *sqlite3_errmsg(sqlite3*);
 SQLITE_API const void *sqlite3_errmsg16(sqlite3*);
 SQLITE_API const char *sqlite3_errstr(int);
@@ -3691,7 +3691,7 @@ SQLITE_API int sqlite3_limit(sqlite3*, int id, int newVal);
 ** as a convenience.  The UTF-16 interfaces work by converting the
 ** input text into UTF-8, then invoking the corresponding UTF-8 interface.
 **
-** The first argument, "m_pDB", is a [database connection] obtained from a
+** The first argument, "db", is a [database connection] obtained from a
 ** prior successful call to [sqlite3_open()], [sqlite3_open_v2()] or
 ** [sqlite3_open16()].  The database connection must not have been closed.
 **
@@ -3772,21 +3772,21 @@ SQLITE_API int sqlite3_limit(sqlite3*, int id, int newVal);
 ** sqlite3_prepare_v3() with a zero prepFlags parameter.
 */
 SQLITE_API int sqlite3_prepare(
-  sqlite3 *m_pDB,            /* Database handle */
+  sqlite3 *db,            /* Database handle */
   const char *zSql,       /* SQL statement, UTF-8 encoded */
   int nByte,              /* Maximum length of zSql in bytes. */
   sqlite3_stmt **ppStmt,  /* OUT: Statement handle */
   const char **pzTail     /* OUT: Pointer to unused portion of zSql */
 );
 SQLITE_API int sqlite3_prepare_v2(
-  sqlite3 *m_pDB,            /* Database handle */
+  sqlite3 *db,            /* Database handle */
   const char *zSql,       /* SQL statement, UTF-8 encoded */
   int nByte,              /* Maximum length of zSql in bytes. */
   sqlite3_stmt **ppStmt,  /* OUT: Statement handle */
   const char **pzTail     /* OUT: Pointer to unused portion of zSql */
 );
 SQLITE_API int sqlite3_prepare_v3(
-  sqlite3 *m_pDB,            /* Database handle */
+  sqlite3 *db,            /* Database handle */
   const char *zSql,       /* SQL statement, UTF-8 encoded */
   int nByte,              /* Maximum length of zSql in bytes. */
   unsigned int prepFlags, /* Zero or more SQLITE_PREPARE_ flags */
@@ -3794,21 +3794,21 @@ SQLITE_API int sqlite3_prepare_v3(
   const char **pzTail     /* OUT: Pointer to unused portion of zSql */
 );
 SQLITE_API int sqlite3_prepare16(
-  sqlite3 *m_pDB,            /* Database handle */
+  sqlite3 *db,            /* Database handle */
   const void *zSql,       /* SQL statement, UTF-16 encoded */
   int nByte,              /* Maximum length of zSql in bytes. */
   sqlite3_stmt **ppStmt,  /* OUT: Statement handle */
   const void **pzTail     /* OUT: Pointer to unused portion of zSql */
 );
 SQLITE_API int sqlite3_prepare16_v2(
-  sqlite3 *m_pDB,            /* Database handle */
+  sqlite3 *db,            /* Database handle */
   const void *zSql,       /* SQL statement, UTF-16 encoded */
   int nByte,              /* Maximum length of zSql in bytes. */
   sqlite3_stmt **ppStmt,  /* OUT: Statement handle */
   const void **pzTail     /* OUT: Pointer to unused portion of zSql */
 );
 SQLITE_API int sqlite3_prepare16_v3(
-  sqlite3 *m_pDB,            /* Database handle */
+  sqlite3 *db,            /* Database handle */
   const void *zSql,       /* SQL statement, UTF-16 encoded */
   int nByte,              /* Maximum length of zSql in bytes. */
   unsigned int prepFlags, /* Zero or more SQLITE_PREPARE_ flags */
@@ -4835,7 +4835,7 @@ SQLITE_API int sqlite3_reset(sqlite3_stmt *pStmt);
 ** statement in which the function is running.
 */
 SQLITE_API int sqlite3_create_function(
-  sqlite3 *m_pDB,
+  sqlite3 *db,
   const char *zFunctionName,
   int nArg,
   int eTextRep,
@@ -4845,7 +4845,7 @@ SQLITE_API int sqlite3_create_function(
   void (*xFinal)(sqlite3_context*)
 );
 SQLITE_API int sqlite3_create_function16(
-  sqlite3 *m_pDB,
+  sqlite3 *db,
   const void *zFunctionName,
   int nArg,
   int eTextRep,
@@ -4855,7 +4855,7 @@ SQLITE_API int sqlite3_create_function16(
   void (*xFinal)(sqlite3_context*)
 );
 SQLITE_API int sqlite3_create_function_v2(
-  sqlite3 *m_pDB,
+  sqlite3 *db,
   const char *zFunctionName,
   int nArg,
   int eTextRep,
@@ -4866,7 +4866,7 @@ SQLITE_API int sqlite3_create_function_v2(
   void(*xDestroy)(void*)
 );
 SQLITE_API int sqlite3_create_window_function(
-  sqlite3 *m_pDB,
+  sqlite3 *db,
   const char *zFunctionName,
   int nArg,
   int eTextRep,
@@ -5551,11 +5551,11 @@ SQLITE_API int sqlite3_collation_needed16(
 ** of SQLite.
 */
 SQLITE_API int sqlite3_key(
-  sqlite3 *m_pDB,                   /* Database to be rekeyed */
+  sqlite3 *db,                   /* Database to be rekeyed */
   const void *pKey, int nKey     /* The key */
 );
 SQLITE_API int sqlite3_key_v2(
-  sqlite3 *m_pDB,                   /* Database to be rekeyed */
+  sqlite3 *db,                   /* Database to be rekeyed */
   const char *zDbName,           /* Name of the database */
   const void *pKey, int nKey     /* The key */
 );
@@ -5569,11 +5569,11 @@ SQLITE_API int sqlite3_key_v2(
 ** of SQLite.
 */
 SQLITE_API int sqlite3_rekey(
-  sqlite3 *m_pDB,                   /* Database to be rekeyed */
+  sqlite3 *db,                   /* Database to be rekeyed */
   const void *pKey, int nKey     /* The new key */
 );
 SQLITE_API int sqlite3_rekey_v2(
-  sqlite3 *m_pDB,                   /* Database to be rekeyed */
+  sqlite3 *db,                   /* Database to be rekeyed */
   const char *zDbName,           /* Name of the database */
   const void *pKey, int nKey     /* The new key */
 );
@@ -5798,7 +5798,7 @@ SQLITE_API sqlite3 *sqlite3_db_handle(sqlite3_stmt*);
 ** will be an absolute pathname, even if the filename used
 ** to open the database originally was a URI or relative pathname.
 */
-SQLITE_API const char *sqlite3_db_filename(sqlite3 *m_pDB, const char *zDbName);
+SQLITE_API const char *sqlite3_db_filename(sqlite3 *db, const char *zDbName);
 
 /*
 ** CAPI3REF: Determine if a database is read-only
@@ -5808,7 +5808,7 @@ SQLITE_API const char *sqlite3_db_filename(sqlite3 *m_pDB, const char *zDbName);
 ** of connection D is read-only, 0 if it is read/write, or -1 if N is not
 ** the name of a database on connection D.
 */
-SQLITE_API int sqlite3_db_readonly(sqlite3 *m_pDB, const char *zDbName);
+SQLITE_API int sqlite3_db_readonly(sqlite3 *db, const char *zDbName);
 
 /*
 ** CAPI3REF: Find the next prepared statement
@@ -6133,7 +6133,7 @@ SQLITE_API SQLITE_DEPRECATED void sqlite3_soft_heap_limit(int N);
 ** any errors are encountered while loading the schema.
 */
 SQLITE_API int sqlite3_table_column_metadata(
-  sqlite3 *m_pDB,                /* Connection handle */
+  sqlite3 *db,                /* Connection handle */
   const char *zDbName,        /* Database name or NULL */
   const char *zTableName,     /* Table name */
   const char *zColumnName,    /* Column name */
@@ -6175,7 +6175,7 @@ SQLITE_API int sqlite3_table_column_metadata(
 **
 ** ^Extension loading must be enabled using
 ** [sqlite3_enable_load_extension()] or
-** [sqlite3_db_config](m_pDB,[SQLITE_DBCONFIG_ENABLE_LOAD_EXTENSION],1,NULL)
+** [sqlite3_db_config](db,[SQLITE_DBCONFIG_ENABLE_LOAD_EXTENSION],1,NULL)
 ** prior to calling this API,
 ** otherwise an error will be returned.
 **
@@ -6189,7 +6189,7 @@ SQLITE_API int sqlite3_table_column_metadata(
 ** See also the [load_extension() SQL function].
 */
 SQLITE_API int sqlite3_load_extension(
-  sqlite3 *m_pDB,          /* Load the extension into this database connection */
+  sqlite3 *db,          /* Load the extension into this database connection */
   const char *zFile,    /* Name of the shared library containing extension */
   const char *zProc,    /* Entry point.  Derived from zFile if 0 */
   char **pzErrMsg       /* Put error message here if not 0 */
@@ -6211,7 +6211,7 @@ SQLITE_API int sqlite3_load_extension(
 **
 ** ^This interface enables or disables both the C-API
 ** [sqlite3_load_extension()] and the SQL function [load_extension()].
-** ^(Use [sqlite3_db_config](m_pDB,[SQLITE_DBCONFIG_ENABLE_LOAD_EXTENSION],..)
+** ^(Use [sqlite3_db_config](db,[SQLITE_DBCONFIG_ENABLE_LOAD_EXTENSION],..)
 ** to enable or disable only the C-API.)^
 **
 ** <b>Security warning:</b> It is recommended that extension loading
@@ -6220,7 +6220,7 @@ SQLITE_API int sqlite3_load_extension(
 ** remains disabled. This will prevent SQL injections from giving attackers
 ** access to extension loading capabilities.
 */
-SQLITE_API int sqlite3_enable_load_extension(sqlite3 *m_pDB, int onoff);
+SQLITE_API int sqlite3_enable_load_extension(sqlite3 *db, int onoff);
 
 /*
 ** CAPI3REF: Automatically Load Statically Linked Extensions
@@ -6237,7 +6237,7 @@ SQLITE_API int sqlite3_enable_load_extension(sqlite3 *m_pDB, int onoff);
 **
 ** <blockquote><pre>
 ** &nbsp;  int xEntryPoint(
-** &nbsp;    sqlite3 *m_pDB,
+** &nbsp;    sqlite3 *db,
 ** &nbsp;    const char **pzErrMsg,
 ** &nbsp;    const struct sqlite3_api_routines *pThunk
 ** &nbsp;  );
@@ -6539,13 +6539,13 @@ struct sqlite3_index_info {
 ** destructor.
 */
 SQLITE_API int sqlite3_create_module(
-  sqlite3 *m_pDB,               /* SQLite connection to register module with */
+  sqlite3 *db,               /* SQLite connection to register module with */
   const char *zName,         /* Name of the module */
   const sqlite3_module *p,   /* Methods for the module */
   void *pClientData          /* Client data for xCreate/xConnect */
 );
 SQLITE_API int sqlite3_create_module_v2(
-  sqlite3 *m_pDB,               /* SQLite connection to register module with */
+  sqlite3 *db,               /* SQLite connection to register module with */
   const char *zName,         /* Name of the module */
   const sqlite3_module *p,   /* Methods for the module */
   void *pClientData,         /* Client data for xCreate/xConnect */
@@ -8522,7 +8522,7 @@ SQLITE_API void *sqlite3_wal_hook(
 ** is only necessary if the default setting is found to be suboptimal
 ** for a particular application.
 */
-SQLITE_API int sqlite3_wal_autocheckpoint(sqlite3 *m_pDB, int N);
+SQLITE_API int sqlite3_wal_autocheckpoint(sqlite3 *db, int N);
 
 /*
 ** CAPI3REF: Checkpoint a database
@@ -8544,7 +8544,7 @@ SQLITE_API int sqlite3_wal_autocheckpoint(sqlite3 *m_pDB, int N);
 ** start a callback but which do not need the full power (and corresponding
 ** complication) of [sqlite3_wal_checkpoint_v2()].
 */
-SQLITE_API int sqlite3_wal_checkpoint(sqlite3 *m_pDB, const char *zDb);
+SQLITE_API int sqlite3_wal_checkpoint(sqlite3 *db, const char *zDb);
 
 /*
 ** CAPI3REF: Checkpoint a database
@@ -8615,7 +8615,7 @@ SQLITE_API int sqlite3_wal_checkpoint(sqlite3 *m_pDB, const char *zDb);
 **
 ** ^If parameter zDb is NULL or points to a zero length string, then the
 ** specified operation is attempted on all WAL databases [attached] to 
-** [database connection] m_pDB.  In this case the
+** [database connection] db.  In this case the
 ** values written to output parameters *pnLog and *pnCkpt are undefined. ^If 
 ** an SQLITE_BUSY error is encountered when processing one or more of the 
 ** attached WAL databases, the operation is still attempted on any remaining 
@@ -8639,7 +8639,7 @@ SQLITE_API int sqlite3_wal_checkpoint(sqlite3 *m_pDB, const char *zDb);
 ** from SQL.
 */
 SQLITE_API int sqlite3_wal_checkpoint_v2(
-  sqlite3 *m_pDB,                    /* Database handle */
+  sqlite3 *db,                    /* Database handle */
   const char *zDb,                /* Name of attached database (or NULL) */
   int eMode,                      /* SQLITE_CHECKPOINT_* value */
   int *pnLog,                     /* OUT: Size of WAL log in frames */
@@ -8687,7 +8687,7 @@ SQLITE_API int sqlite3_vtab_config(sqlite3*, int op, ...);
 ** [[SQLITE_VTAB_CONSTRAINT_SUPPORT]]
 ** <dt>SQLITE_VTAB_CONSTRAINT_SUPPORT
 ** <dd>Calls of the form
-** [sqlite3_vtab_config](m_pDB,SQLITE_VTAB_CONSTRAINT_SUPPORT,X) are supported,
+** [sqlite3_vtab_config](db,SQLITE_VTAB_CONSTRAINT_SUPPORT,X) are supported,
 ** where X is an integer.  If X is zero, then the [virtual table] whose
 ** [xCreate] or [xConnect] method invoked [sqlite3_vtab_config()] does not
 ** support constraints.  In this configuration (which is the default) if
@@ -9001,10 +9001,10 @@ SQLITE_API int sqlite3_db_cacheflush(sqlite3*);
 */
 #if defined(SQLITE_ENABLE_PREUPDATE_HOOK)
 SQLITE_API void *sqlite3_preupdate_hook(
-  sqlite3 *m_pDB,
+  sqlite3 *db,
   void(*xPreUpdate)(
     void *pCtx,                   /* Copy of third arg to preupdate_hook() */
-    sqlite3 *m_pDB,                  /* Database handle */
+    sqlite3 *db,                  /* Database handle */
     int op,                       /* SQLITE_UPDATE, DELETE or INSERT */
     char const *zDb,              /* Database name */
     char const *zName,            /* Table name */
@@ -9099,7 +9099,7 @@ typedef struct sqlite3_snapshot {
 ** [SQLITE_ENABLE_SNAPSHOT] compile-time option is used.
 */
 SQLITE_API SQLITE_EXPERIMENTAL int sqlite3_snapshot_get(
-  sqlite3 *m_pDB,
+  sqlite3 *db,
   const char *zSchema,
   sqlite3_snapshot **ppSnapshot
 );
@@ -9148,7 +9148,7 @@ SQLITE_API SQLITE_EXPERIMENTAL int sqlite3_snapshot_get(
 ** [SQLITE_ENABLE_SNAPSHOT] compile-time option is used.
 */
 SQLITE_API SQLITE_EXPERIMENTAL int sqlite3_snapshot_open(
-  sqlite3 *m_pDB,
+  sqlite3 *db,
   const char *zSchema,
   sqlite3_snapshot *pSnapshot
 );
@@ -9209,7 +9209,7 @@ SQLITE_API SQLITE_EXPERIMENTAL int sqlite3_snapshot_cmp(
 ** even though the WAL file contains other valid transactions.
 **
 ** This function attempts to scan the WAL file associated with database zDb
-** of database handle m_pDB and make all valid snapshots available to
+** of database handle db and make all valid snapshots available to
 ** sqlite3_snapshot_open(). It is an error if there is already a read
 ** transaction open on the database, or if the database is not a WAL mode
 ** database.
@@ -9219,7 +9219,7 @@ SQLITE_API SQLITE_EXPERIMENTAL int sqlite3_snapshot_cmp(
 ** This interface is only available if SQLite is compiled with the
 ** [SQLITE_ENABLE_SNAPSHOT] option.
 */
-SQLITE_API SQLITE_EXPERIMENTAL int sqlite3_snapshot_recover(sqlite3 *m_pDB, const char *zDb);
+SQLITE_API SQLITE_EXPERIMENTAL int sqlite3_snapshot_recover(sqlite3 *db, const char *zDb);
 
 /*
 ** CAPI3REF: Serialize a database
@@ -9258,7 +9258,7 @@ SQLITE_API SQLITE_EXPERIMENTAL int sqlite3_snapshot_recover(sqlite3 *m_pDB, cons
 ** [SQLITE_ENABLE_DESERIALIZE] option.
 */
 SQLITE_API unsigned char *sqlite3_serialize(
-  sqlite3 *m_pDB,           /* The database connection */
+  sqlite3 *db,           /* The database connection */
   const char *zSchema,   /* Which DB to serialize. ex: "main", "temp", ... */
   sqlite3_int64 *piSize, /* Write size of the DB here, if not NULL */
   unsigned int mFlags    /* Zero or more SQLITE_SERIALIZE_* flags */
@@ -9310,7 +9310,7 @@ SQLITE_API unsigned char *sqlite3_serialize(
 ** [SQLITE_ENABLE_DESERIALIZE] option.
 */
 SQLITE_API int sqlite3_deserialize(
-  sqlite3 *m_pDB,            /* The database connection */
+  sqlite3 *db,            /* The database connection */
   const char *zSchema,    /* Which DB to reopen with the deserialization */
   unsigned char *pData,   /* The serialized database content */
   sqlite3_int64 szDb,     /* Number bytes in the deserialization */
@@ -9397,7 +9397,7 @@ typedef struct sqlite3_rtree_query_info sqlite3_rtree_query_info;
 **   SELECT ... FROM <rtree> WHERE <rtree col> MATCH $zGeom(... params ...)
 */
 SQLITE_API int sqlite3_rtree_geometry_callback(
-  sqlite3 *m_pDB,
+  sqlite3 *db,
   const char *zGeom,
   int (*xGeom)(sqlite3_rtree_geometry*, int, sqlite3_rtree_dbl*,int*),
   void *pContext
@@ -9423,7 +9423,7 @@ struct sqlite3_rtree_geometry {
 **   SELECT ... FROM <rtree> WHERE <rtree col> MATCH $zQueryFunc(... params ...)
 */
 SQLITE_API int sqlite3_rtree_query_callback(
-  sqlite3 *m_pDB,
+  sqlite3 *db,
   const char *zQueryFunc,
   int (*xQueryFunc)(sqlite3_rtree_query_info*),
   void *pContext,
@@ -9508,7 +9508,7 @@ typedef struct sqlite3_changeset_iter sqlite3_changeset_iter;
 ** CAPI3REF: Create A New Session Object
 ** CONSTRUCTOR: sqlite3_session
 **
-** Create a new session object attached to database handle m_pDB. If successful,
+** Create a new session object attached to database handle db. If successful,
 ** a pointer to the new object is written to *ppSession and SQLITE_OK is
 ** returned. If an error occurs, *ppSession is set to NULL and an SQLite
 ** error code (e.g. SQLITE_NOMEM) is returned.
@@ -9536,8 +9536,8 @@ typedef struct sqlite3_changeset_iter sqlite3_changeset_iter;
 ** to the database when the session object is created.
 */
 SQLITE_API int sqlite3session_create(
-  sqlite3 *m_pDB,                    /* Database handle */
-  const char *zDb,                /* Name of m_pDB (e.g. "main") */
+  sqlite3 *db,                    /* Database handle */
+  const char *zDb,                /* Name of db (e.g. "main") */
   sqlite3_session **ppSession     /* OUT: New session object */
 );
 
@@ -10452,7 +10452,7 @@ SQLITE_API void sqlite3changegroup_delete(sqlite3_changegroup*);
 ** CAPI3REF: Apply A Changeset To A Database
 **
 ** Apply a changeset or patchset to a database. These functions attempt to
-** update the "main" database attached to handle m_pDB with the changes found in
+** update the "main" database attached to handle db with the changes found in
 ** the changeset passed via the second and third arguments. 
 **
 ** The fourth argument (xFilter) passed to these functions is the "filter
@@ -10607,7 +10607,7 @@ SQLITE_API void sqlite3changegroup_delete(sqlite3_changegroup*);
 ** and therefore subject to change.
 */
 SQLITE_API int sqlite3changeset_apply(
-  sqlite3 *m_pDB,                    /* Apply change to "main" m_pDB of this handle */
+  sqlite3 *db,                    /* Apply change to "main" db of this handle */
   int nChangeset,                 /* Size of changeset in bytes */
   void *pChangeset,               /* Changeset blob */
   int(*xFilter)(
@@ -10622,7 +10622,7 @@ SQLITE_API int sqlite3changeset_apply(
   void *pCtx                      /* First argument passed to xConflict */
 );
 SQLITE_API int sqlite3changeset_apply_v2(
-  sqlite3 *m_pDB,                    /* Apply change to "main" m_pDB of this handle */
+  sqlite3 *db,                    /* Apply change to "main" db of this handle */
   int nChangeset,                 /* Size of changeset in bytes */
   void *pChangeset,               /* Changeset blob */
   int(*xFilter)(
@@ -11005,7 +11005,7 @@ SQLITE_API void sqlite3rebaser_delete(sqlite3_rebaser *p);
 ** no guarantees are made as to the size of the chunks of data returned.
 */
 SQLITE_API int sqlite3changeset_apply_strm(
-  sqlite3 *m_pDB,                    /* Apply change to "main" m_pDB of this handle */
+  sqlite3 *db,                    /* Apply change to "main" db of this handle */
   int (*xInput)(void *pIn, void *pData, int *pnData), /* Input function */
   void *pIn,                                          /* First arg for xInput */
   int(*xFilter)(
@@ -11020,7 +11020,7 @@ SQLITE_API int sqlite3changeset_apply_strm(
   void *pCtx                      /* First argument passed to xConflict */
 );
 SQLITE_API int sqlite3changeset_apply_v2_strm(
-  sqlite3 *m_pDB,                    /* Apply change to "main" m_pDB of this handle */
+  sqlite3 *db,                    /* Apply change to "main" db of this handle */
   int (*xInput)(void *pIn, void *pData, int *pnData), /* Input function */
   void *pIn,                                          /* First arg for xInput */
   int(*xFilter)(

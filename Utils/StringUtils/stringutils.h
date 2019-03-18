@@ -11,20 +11,4 @@ namespace stringutils
 	bool   strwildcard(const char* s, const char* find, bool icase);
 }
 
-namespace utilstest
-{
-	using namespace stringutils;
-
-	static void Test()
-	{
-		strwildcard("cabcd", "*a", true);
-	}
-
-	static void Test1()
-	{
-		bool b = strwildcard("н╒пе", "*в╒", true);
-		b = 0 != strstr("н╒пе", "н╒пе", true);
-	}
-}
-
 #endif 

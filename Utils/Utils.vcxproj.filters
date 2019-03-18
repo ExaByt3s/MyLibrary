@@ -11,6 +11,9 @@
     <Filter Include="Sqlite3">
       <UniqueIdentifier>{9d50b5d7-4bbf-418a-99d9-293ada7d49ce}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Json">
+      <UniqueIdentifier>{8e890acb-1ae0-4506-952e-8a84cf490300}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StringUtils\stringutils.h">
@@ -22,6 +25,24 @@
     <ClInclude Include="Sqlite3\SQLiteHelper.h">
       <Filter>Sqlite3</Filter>
     </ClInclude>
+    <ClInclude Include="Json\cJSON.h">
+      <Filter>Json</Filter>
+    </ClInclude>
+    <ClInclude Include="Json\Test.h">
+      <Filter>Json</Filter>
+    </ClInclude>
+    <ClInclude Include="Json\CJsonObject.hpp">
+      <Filter>Json</Filter>
+    </ClInclude>
+    <ClInclude Include="Sqlite3\Test.h">
+      <Filter>Sqlite3</Filter>
+    </ClInclude>
+    <ClInclude Include="StringUtils\Test.h">
+      <Filter>StringUtils</Filter>
+    </ClInclude>
+    <ClInclude Include="MemoryShare\Test.h">
+      <Filter>MemoryShare</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main_utils.cpp" />
@@ -32,6 +53,15 @@
       <Filter>MemoryShare</Filter>
     </ClCompile>
     <ClCompile Include="Sqlite3\SQLiteHelper.cpp">
+      <Filter>Sqlite3</Filter>
+    </ClCompile>
+    <ClCompile Include="Json\cJSON.c">
+      <Filter>Json</Filter>
+    </ClCompile>
+    <ClCompile Include="Json\CJsonObject.cpp">
+      <Filter>Json</Filter>
+    </ClCompile>
+    <ClCompile Include="Sqlite3\lib\sqlite3.c">
       <Filter>Sqlite3</Filter>
     </ClCompile>
   </ItemGroup>
