@@ -5,6 +5,7 @@
 #include "Sqlite3/Test.h"
 #include "MemoryShare/Test.h"
 #include "Json/Test.h"
+#include "XML/Test.h"
 
 namespace utilstest {}
 
@@ -15,6 +16,7 @@ int main()
 	utilstest::Test_MemoryShare0();
 	utilstest::Test_Sql0();
 	utilstest::Test_Json();
+	utilstest::Test_xml0();
 
 	return 0;
 }

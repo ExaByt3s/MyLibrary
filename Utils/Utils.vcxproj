@@ -158,15 +158,22 @@
     <ClInclude Include="Sqlite3\Test.h" />
     <ClInclude Include="StringUtils\stringutils.h" />
     <ClInclude Include="StringUtils\Test.h" />
+    <ClInclude Include="XML\Test.h" />
+    <ClInclude Include="XML\tinystr.h" />
+    <ClInclude Include="XML\tinyxml.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Json\cJSON.c" />
     <ClCompile Include="Json\CJsonObject.cpp" />
     <ClCompile Include="main_utils.cpp" />
     <ClCompile Include="MemoryShare\MemoryShare.cpp" />
-    <ClCompile Include="Sqlite3\lib\sqlite3.c" />
+    <ClCompile Include="Sqlite3\sqlite3.c" />
     <ClCompile Include="Sqlite3\SQLiteHelper.cpp" />
     <ClCompile Include="StringUtils\stringutils.cpp" />
+    <ClCompile Include="XML\tinystr.cpp" />
+    <ClCompile Include="XML\tinyxml.cpp" />
+    <ClCompile Include="XML\tinyxmlerror.cpp" />
+    <ClCompile Include="XML\tinyxmlparser.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -2,7 +2,7 @@
 
 #include <string>
 
-#include "lib/sqlite3.h"  
+#include "sqlite3.h"  
 
 //#pragma comment(lib, "Sqlite3/lib/sqlite3.lib")
 

@@ -14,6 +14,9 @@
     <Filter Include="Json">
       <UniqueIdentifier>{8e890acb-1ae0-4506-952e-8a84cf490300}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Xml">
+      <UniqueIdentifier>{876ce9c8-e52e-451b-ae62-d855ea96d11f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StringUtils\stringutils.h">
@@ -43,6 +46,15 @@
     <ClInclude Include="MemoryShare\Test.h">
       <Filter>MemoryShare</Filter>
     </ClInclude>
+    <ClInclude Include="XML\Test.h">
+      <Filter>Xml</Filter>
+    </ClInclude>
+    <ClInclude Include="XML\tinystr.h">
+      <Filter>Xml</Filter>
+    </ClInclude>
+    <ClInclude Include="XML\tinyxml.h">
+      <Filter>Xml</Filter>
+    </ClInclude>
     <ClInclude Include="Sqlite3\sqlite3.h">
       <Filter>Sqlite3</Filter>
     </ClInclude>
@@ -64,7 +76,19 @@
     <ClCompile Include="Json\CJsonObject.cpp">
       <Filter>Json</Filter>
     </ClCompile>
-    <ClCompile Include="Sqlite3\lib\sqlite3.c">
+    <ClCompile Include="XML\tinystr.cpp">
+      <Filter>Xml</Filter>
+    </ClCompile>
+    <ClCompile Include="XML\tinyxml.cpp">
+      <Filter>Xml</Filter>
+    </ClCompile>
+    <ClCompile Include="XML\tinyxmlerror.cpp">
+      <Filter>Xml</Filter>
+    </ClCompile>
+    <ClCompile Include="XML\tinyxmlparser.cpp">
+      <Filter>Xml</Filter>
+    </ClCompile>
+    <ClCompile Include="Sqlite3\sqlite3.c">
       <Filter>Sqlite3</Filter>
     </ClCompile>
   </ItemGroup>
