@@ -153,6 +153,7 @@
     <ClInclude Include="Json\Test.h" />
     <ClInclude Include="MemoryShare\MemoryShare.h" />
     <ClInclude Include="MemoryShare\Test.h" />
+    <ClInclude Include="Sqlite3\sqlite3.h" />
     <ClInclude Include="Sqlite3\SQLiteHelper.h" />
     <ClInclude Include="Sqlite3\Test.h" />
     <ClInclude Include="StringUtils\stringutils.h" />

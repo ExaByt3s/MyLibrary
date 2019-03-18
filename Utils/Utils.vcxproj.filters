@@ -43,6 +43,9 @@
     <ClInclude Include="MemoryShare\Test.h">
       <Filter>MemoryShare</Filter>
     </ClInclude>
+    <ClInclude Include="Sqlite3\sqlite3.h">
+      <Filter>Sqlite3</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main_utils.cpp" />
