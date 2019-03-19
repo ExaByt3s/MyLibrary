@@ -20,6 +20,21 @@
     <Filter Include="CodeCvt">
       <UniqueIdentifier>{c6084421-bc98-42e1-891a-ec9c11105e16}</UniqueIdentifier>
     </Filter>
+    <Filter Include="InitFile">
+      <UniqueIdentifier>{f878c67f-fc1f-4358-8f39-301f0fd63e20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LimitSingleInstance">
+      <UniqueIdentifier>{c0105cc6-d2b3-41dc-b5b9-91afe64c1e27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ResourceUtil">
+      <UniqueIdentifier>{09a78199-f419-409f-8919-f67d78628920}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CommandLineArguments">
+      <UniqueIdentifier>{87de4e90-f41f-4182-b751-213fcff5eefd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WinRegistryKey">
+      <UniqueIdentifier>{b062b4c5-2cf9-4ceb-afef-62b4e1b31466}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StringUtils\stringutils.h">
@@ -67,6 +82,36 @@
     <ClInclude Include="CodeCvt\Test.h">
       <Filter>CodeCvt</Filter>
     </ClInclude>
+    <ClInclude Include="InitFile\IniFIle.h">
+      <Filter>InitFile</Filter>
+    </ClInclude>
+    <ClInclude Include="InitFile\Test.h">
+      <Filter>InitFile</Filter>
+    </ClInclude>
+    <ClInclude Include="LimitSingleInstance\LimitSingleInstance.h">
+      <Filter>LimitSingleInstance</Filter>
+    </ClInclude>
+    <ClInclude Include="LimitSingleInstance\Test.h">
+      <Filter>LimitSingleInstance</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceUtil\ResourceUtil.h">
+      <Filter>ResourceUtil</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceUtil\Test.h">
+      <Filter>ResourceUtil</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandLineArguments\Test.h">
+      <Filter>CommandLineArguments</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandLineArguments\CommandLineArguments.h">
+      <Filter>CommandLineArguments</Filter>
+    </ClInclude>
+    <ClInclude Include="WinRegistryKey\Test.h">
+      <Filter>WinRegistryKey</Filter>
+    </ClInclude>
+    <ClInclude Include="WinRegistryKey\WinRegistryKey.h">
+      <Filter>WinRegistryKey</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main_utils.cpp" />
@@ -102,6 +147,18 @@
     </ClCompile>
     <ClCompile Include="CodeCvt\CodeCvt.cpp">
       <Filter>CodeCvt</Filter>
+    </ClCompile>
+    <ClCompile Include="InitFile\IniFIle.cpp">
+      <Filter>InitFile</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceUtil\ResourceUtil.cpp">
+      <Filter>ResourceUtil</Filter>
+    </ClCompile>
+    <ClCompile Include="CommandLineArguments\CommandLineArguments.cpp">
+      <Filter>CommandLineArguments</Filter>
+    </ClCompile>
+    <ClCompile Include="WinRegistryKey\WinRegistryKey.cpp">
+      <Filter>WinRegistryKey</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

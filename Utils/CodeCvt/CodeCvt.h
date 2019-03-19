@@ -1,4 +1,6 @@
-#pragma once
+#ifndef __CODECVT_H_
+#define __CODECVT_H_
+
 
 #include <string>
 
@@ -32,6 +34,8 @@ namespace codecvt
 	*/
 	bool ANSIToUTF16(const std::string  & sSrc, std::wstring & wsRes);
 }
+
+#endif
 
 
 

@@ -150,29 +150,43 @@
   <ItemGroup>
     <ClInclude Include="CodeCvt\CodeCvt.h" />
     <ClInclude Include="CodeCvt\Test.h" />
+    <ClInclude Include="CommandLineArguments\Test.h" />
+    <ClInclude Include="CommandLineArguments\CommandLineArguments.h" />
+    <ClInclude Include="InitFile\IniFIle.h" />
+    <ClInclude Include="InitFile\Test.h" />
     <ClInclude Include="Json\cJSON.h" />
     <ClInclude Include="Json\CJsonObject.hpp" />
     <ClInclude Include="Json\Test.h" />
+    <ClInclude Include="LimitSingleInstance\LimitSingleInstance.h" />
+    <ClInclude Include="LimitSingleInstance\Test.h" />
     <ClInclude Include="MemoryShare\MemoryShare.h" />
     <ClInclude Include="MemoryShare\Test.h" />
+    <ClInclude Include="ResourceUtil\ResourceUtil.h" />
+    <ClInclude Include="ResourceUtil\Test.h" />
     <ClInclude Include="Sqlite3\sqlite3.h" />
     <ClInclude Include="Sqlite3\SQLiteHelper.h" />
     <ClInclude Include="Sqlite3\Test.h" />
     <ClInclude Include="StringUtils\stringutils.h" />
     <ClInclude Include="StringUtils\Test.h" />
+    <ClInclude Include="WinRegistryKey\Test.h" />
+    <ClInclude Include="WinRegistryKey\WinRegistryKey.h" />
     <ClInclude Include="XML\Test.h" />
     <ClInclude Include="XML\tinystr.h" />
     <ClInclude Include="XML\tinyxml.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CodeCvt\CodeCvt.cpp" />
+    <ClCompile Include="CommandLineArguments\CommandLineArguments.cpp" />
+    <ClCompile Include="InitFile\IniFIle.cpp" />
     <ClCompile Include="Json\cJSON.c" />
     <ClCompile Include="Json\CJsonObject.cpp" />
     <ClCompile Include="main_utils.cpp" />
     <ClCompile Include="MemoryShare\MemoryShare.cpp" />
+    <ClCompile Include="ResourceUtil\ResourceUtil.cpp" />
     <ClCompile Include="Sqlite3\sqlite3.c" />
     <ClCompile Include="Sqlite3\SQLiteHelper.cpp" />
     <ClCompile Include="StringUtils\stringutils.cpp" />
+    <ClCompile Include="WinRegistryKey\WinRegistryKey.cpp" />
     <ClCompile Include="XML\tinystr.cpp" />
     <ClCompile Include="XML\tinyxml.cpp" />
     <ClCompile Include="XML\tinyxmlerror.cpp" />

@@ -1,5 +1,5 @@
-#ifndef STRING_UTILS_H
-#define STRING_UTILS_H
+#ifndef __STRING_UTILS_H_
+#define __STRING_UTILS_H_
 
 namespace stringutils
 {

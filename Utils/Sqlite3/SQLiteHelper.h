@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __SQLITE3_H_
+#define __SQLITE3_H_
 
 #include <string>
 
@@ -73,4 +74,6 @@ private:
 	sqlite3 *	m_pDB;
 	char *		m_pErrorMessge;
 };
+
+#endif
 

@@ -1,10 +1,9 @@
+#ifndef __CJSONOBJECT_HPP_
+#define __CJSONOBJECT_HPP_
 
 /*
 зЊзд https://github.com/Bwar/CJsonObject
 ***/
-
-#ifndef CJSONOBJECT_HPP_
-#define CJSONOBJECT_HPP_
 
 #include <map>
 #include <list>

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __MEMORYSHARE_H_
+#define __MEMORYSHARE_H_
 
 #include <string>
 #include <Windows.h>
@@ -30,3 +31,5 @@ private:
 	HANDLE  m_hMapFile;
 	LPVOID	m_lpBase;
 };
+
+#endif
