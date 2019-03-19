@@ -17,6 +17,9 @@
     <Filter Include="Xml">
       <UniqueIdentifier>{876ce9c8-e52e-451b-ae62-d855ea96d11f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="CodeCvt">
+      <UniqueIdentifier>{c6084421-bc98-42e1-891a-ec9c11105e16}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StringUtils\stringutils.h">
@@ -58,6 +61,12 @@
     <ClInclude Include="Sqlite3\sqlite3.h">
       <Filter>Sqlite3</Filter>
     </ClInclude>
+    <ClInclude Include="CodeCvt\CodeCvt.h">
+      <Filter>CodeCvt</Filter>
+    </ClInclude>
+    <ClInclude Include="CodeCvt\Test.h">
+      <Filter>CodeCvt</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main_utils.cpp" />
@@ -90,6 +99,9 @@
     </ClCompile>
     <ClCompile Include="Sqlite3\sqlite3.c">
       <Filter>Sqlite3</Filter>
+    </ClCompile>
+    <ClCompile Include="CodeCvt\CodeCvt.cpp">
+      <Filter>CodeCvt</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

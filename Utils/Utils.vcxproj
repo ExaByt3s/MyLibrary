@@ -148,6 +148,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CodeCvt\CodeCvt.h" />
+    <ClInclude Include="CodeCvt\Test.h" />
     <ClInclude Include="Json\cJSON.h" />
     <ClInclude Include="Json\CJsonObject.hpp" />
     <ClInclude Include="Json\Test.h" />
@@ -163,6 +165,7 @@
     <ClInclude Include="XML\tinyxml.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CodeCvt\CodeCvt.cpp" />
     <ClCompile Include="Json\cJSON.c" />
     <ClCompile Include="Json\CJsonObject.cpp" />
     <ClCompile Include="main_utils.cpp" />
