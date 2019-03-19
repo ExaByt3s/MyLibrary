@@ -35,6 +35,15 @@
     <Filter Include="WinRegistryKey">
       <UniqueIdentifier>{b062b4c5-2cf9-4ceb-afef-62b4e1b31466}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Encrypt">
+      <UniqueIdentifier>{b74d913a-e601-4f73-9a93-16fd0b4d19cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Encrypt\.h">
+      <UniqueIdentifier>{987fcbcb-48e7-48f4-b9fc-b07665dcf117}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Encrypt\.c">
+      <UniqueIdentifier>{45a29bf2-ae3e-4f79-a180-e92ec38fb316}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StringUtils\stringutils.h">
@@ -112,6 +121,54 @@
     <ClInclude Include="WinRegistryKey\WinRegistryKey.h">
       <Filter>WinRegistryKey</Filter>
     </ClInclude>
+    <ClInclude Include="Encrypt\Test.h">
+      <Filter>Encrypt</Filter>
+    </ClInclude>
+    <ClInclude Include="Encrypt\aes.h">
+      <Filter>Encrypt\.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Encrypt\b64.h">
+      <Filter>Encrypt\.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Encrypt\crc32.h">
+      <Filter>Encrypt\.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Encrypt\hmac.h">
+      <Filter>Encrypt\.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Encrypt\md5.h">
+      <Filter>Encrypt\.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Encrypt\p224.h">
+      <Filter>Encrypt\.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Encrypt\p256.h">
+      <Filter>Encrypt\.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Encrypt\p256_ecdsa.h">
+      <Filter>Encrypt\.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Encrypt\p256_prng.h">
+      <Filter>Encrypt\.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Encrypt\pbkdf2.h">
+      <Filter>Encrypt\.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Encrypt\hash-internal.h">
+      <Filter>Encrypt\.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Encrypt\rc4.h">
+      <Filter>Encrypt\.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Encrypt\sha.h">
+      <Filter>Encrypt\.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Encrypt\sha1.h">
+      <Filter>Encrypt\.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Encrypt\sha256.h">
+      <Filter>Encrypt\.h</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main_utils.cpp" />
@@ -159,6 +216,51 @@
     </ClCompile>
     <ClCompile Include="WinRegistryKey\WinRegistryKey.cpp">
       <Filter>WinRegistryKey</Filter>
+    </ClCompile>
+    <ClCompile Include="Encrypt\aes.c">
+      <Filter>Encrypt\.c</Filter>
+    </ClCompile>
+    <ClCompile Include="Encrypt\b64.c">
+      <Filter>Encrypt\.c</Filter>
+    </ClCompile>
+    <ClCompile Include="Encrypt\crc32.c">
+      <Filter>Encrypt\.c</Filter>
+    </ClCompile>
+    <ClCompile Include="Encrypt\hmac.c">
+      <Filter>Encrypt\.c</Filter>
+    </ClCompile>
+    <ClCompile Include="Encrypt\md5.c">
+      <Filter>Encrypt\.c</Filter>
+    </ClCompile>
+    <ClCompile Include="Encrypt\p224_ec.c">
+      <Filter>Encrypt\.c</Filter>
+    </ClCompile>
+    <ClCompile Include="Encrypt\p256.c">
+      <Filter>Encrypt\.c</Filter>
+    </ClCompile>
+    <ClCompile Include="Encrypt\p256_ec.c">
+      <Filter>Encrypt\.c</Filter>
+    </ClCompile>
+    <ClCompile Include="Encrypt\p256_ecdsa.c">
+      <Filter>Encrypt\.c</Filter>
+    </ClCompile>
+    <ClCompile Include="Encrypt\p256_prng.c">
+      <Filter>Encrypt\.c</Filter>
+    </ClCompile>
+    <ClCompile Include="Encrypt\pbkdf2.c">
+      <Filter>Encrypt\.c</Filter>
+    </ClCompile>
+    <ClCompile Include="Encrypt\rc4.c">
+      <Filter>Encrypt\.c</Filter>
+    </ClCompile>
+    <ClCompile Include="Encrypt\sha.c">
+      <Filter>Encrypt\.c</Filter>
+    </ClCompile>
+    <ClCompile Include="Encrypt\sha1.c">
+      <Filter>Encrypt\.c</Filter>
+    </ClCompile>
+    <ClCompile Include="Encrypt\sha256.c">
+      <Filter>Encrypt\.c</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
