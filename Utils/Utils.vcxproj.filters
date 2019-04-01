@@ -44,6 +44,12 @@
     <Filter Include="Encrypt\.c">
       <UniqueIdentifier>{45a29bf2-ae3e-4f79-a180-e92ec38fb316}</UniqueIdentifier>
     </Filter>
+    <Filter Include="WinApiCaller">
+      <UniqueIdentifier>{235fb482-8b2c-4dad-98f7-4002f5d257ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Service">
+      <UniqueIdentifier>{4914fa1e-e112-42e5-847d-1dc7c15fa2a6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StringUtils\stringutils.h">
@@ -169,6 +175,18 @@
     <ClInclude Include="Encrypt\sha256.h">
       <Filter>Encrypt\.h</Filter>
     </ClInclude>
+    <ClInclude Include="WinApiCaller\WinApiCaller.h">
+      <Filter>WinApiCaller</Filter>
+    </ClInclude>
+    <ClInclude Include="WinApiCaller\Test.h">
+      <Filter>WinApiCaller</Filter>
+    </ClInclude>
+    <ClInclude Include="Service\service_utils.h">
+      <Filter>Service</Filter>
+    </ClInclude>
+    <ClInclude Include="Service\Test.h">
+      <Filter>Service</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main_utils.cpp" />
@@ -261,6 +279,9 @@
     </ClCompile>
     <ClCompile Include="Encrypt\sha256.c">
       <Filter>Encrypt\.c</Filter>
+    </ClCompile>
+    <ClCompile Include="Service\service_utils.cpp">
+      <Filter>Service</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

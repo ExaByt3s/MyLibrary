@@ -179,11 +179,15 @@
     <ClInclude Include="MemoryShare\Test.h" />
     <ClInclude Include="ResourceUtil\ResourceUtil.h" />
     <ClInclude Include="ResourceUtil\Test.h" />
+    <ClInclude Include="Service\service_utils.h" />
+    <ClInclude Include="Service\Test.h" />
     <ClInclude Include="Sqlite3\sqlite3.h" />
     <ClInclude Include="Sqlite3\SQLiteHelper.h" />
     <ClInclude Include="Sqlite3\Test.h" />
     <ClInclude Include="StringUtils\stringutils.h" />
     <ClInclude Include="StringUtils\Test.h" />
+    <ClInclude Include="WinApiCaller\Test.h" />
+    <ClInclude Include="WinApiCaller\WinApiCaller.h" />
     <ClInclude Include="WinRegistryKey\Test.h" />
     <ClInclude Include="WinRegistryKey\WinRegistryKey.h" />
     <ClInclude Include="XML\Test.h" />
@@ -214,6 +218,7 @@
     <ClCompile Include="main_utils.cpp" />
     <ClCompile Include="MemoryShare\MemoryShare.cpp" />
     <ClCompile Include="ResourceUtil\ResourceUtil.cpp" />
+    <ClCompile Include="Service\service_utils.cpp" />
     <ClCompile Include="Sqlite3\sqlite3.c" />
     <ClCompile Include="Sqlite3\SQLiteHelper.cpp" />
     <ClCompile Include="StringUtils\stringutils.cpp" />
