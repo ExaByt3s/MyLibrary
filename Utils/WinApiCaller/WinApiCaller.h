@@ -14,7 +14,7 @@ public:
 	API_Caller(LPCSTR lpcModuleName, LPCSTR lpcProcessName)
 		: m_hFun(0)
 	{
-		HMODULE m_hModule = ::LoadLibraryA(lpcModuleName);
+		m_hModule = ::LoadLibraryA(lpcModuleName);
 
 		if (!m_hModule)
 		{
